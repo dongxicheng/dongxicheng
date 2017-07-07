@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Clock</title>
+
+<SCRIPT LANGUAGE="JavaScript">
+	function resetTimer() {
+		then = new Date();
+	}
+
+	function begin(){
+		resetTimer();
+		display();
+	}
+
+	function display() {
+		setTimeout("display();", 100);
+
+		now = new Date();
+		ms  = now.getTime() - then.getTime();
+		ms  = Math.floor(ms / 1000);
+		min = Math.floor(ms/60);
+		ms  = Math.floor(ms%60);
+
+		document.getElementById('timehour').innerText = "" + min + ":";
+		if( ms<10 ) {
+			document.getElementById('time').innerText = "0" + ms;
+		} else if( ms<=60 ){
+			document.getElementById('time').innerText = "" + ms;
+		}
+	}
+</SCRIPT>
+
+
+<body onLoad="begin()" >
+
+<style type="text/css">
+    body {
+    	background:#9ecba2;
+        text-align:center;  
+    }
+    label {
+		COLOR: #000;
+	}
+</style>
+
+<label id="timehour" style="font-size:200px;" >00</label>
+<label id="time" style="font-size:400px;" >00</label>
+
+</body>
+</html>
+
